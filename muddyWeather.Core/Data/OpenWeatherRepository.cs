@@ -1,5 +1,8 @@
 ﻿using muddyWeather.Core.Model;
 
+using RestSharp;
+
+using System;
 using System.Threading.Tasks;
 
 namespace muddyWeather.Core.Data
@@ -7,27 +10,56 @@ namespace muddyWeather.Core.Data
     public class OpenWeatherRepository : IWeatherRepository
     {
         private readonly string appId;
-        private readonly string baseUrl;
+        private readonly IRestClient client;
 
-        public OpenWeatherRepository(string appId,string baseUrl)
+        public OpenWeatherRepository(string appId,IRestClient client)
         {
             if (string.IsNullOrWhiteSpace(appId))
             {
                 throw new System.ArgumentException($"'{nameof(appId)}' cannot be null or whitespace.", nameof(appId));
             }
 
-            if (string.IsNullOrWhiteSpace(baseUrl))
+            if (client is null)
             {
-                throw new System.ArgumentException($"'{nameof(baseUrl)}' cannot be null or whitespace.", nameof(baseUrl));
+                throw new ArgumentNullException(nameof(client));
             }
 
             this.appId = appId;
-            this.baseUrl = baseUrl;
+            this.client = client;
         }
 
-        public async Task<WeatherForecast> GetAsync(GeoLocation location)
+        public async Task<WeatherForecast> GetWeatherForecastAsync(GeoLocation location)
         {
-            throw new System.NotImplementedException();
+            if (location is null)
+            {
+                throw new ArgumentNullException(nameof(location));
+            }
+
+            var request = new RestRequest("onecall", Method.GET)
+                .AddParameter("lat", location.Latitude)
+                .AddParameter("lon", location.Longitude)
+                .AddParameter("exclude", "current,minutely,hourly,alerts")
+                .AddParameter("appid", appId)
+                ;
+            var response = await client.ExecuteAsync<WeatherForecast>(request);
+
+            if (response.ErrorException != null)
+            {
+                throw response.ErrorException;
+            }
+
+            if(response.ErrorMessage != null)
+            {
+                throw new Exception(response.ErrorMessage);
+            }
+
+            if(response.IsSuccessful == false)
+            {
+                throw new Exception(response.StatusDescription);
+            }
+
+            return response.Data;
         }
+
     }
 }

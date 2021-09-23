@@ -6,6 +6,6 @@ namespace muddyWeather.Core.Data
 {
     public interface IWeatherRepository
     {
-        Task<WeatherForecast> GetAsync(GeoLocation location);
+        Task<WeatherForecast> GetWeatherForecastAsync(GeoLocation location);
     }
 }
