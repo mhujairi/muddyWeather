@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "muddyWeather", "muddyWeather.csproj", "{AE1A868C-431E-4F68-8D4D-E3498CCF3788}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "muddyWeather", "muddyWeather.csproj", "{AE1A868C-431E-4F68-8D4D-E3498CCF3788}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "muddyWeather.Core", "..\muddyWeather.Core\muddyWeather.Core.csproj", "{001EC089-858B-45EC-8559-BB753210EB1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "muddyWeather.Core.Tests", "..\muddyWeather.Core.Tests\muddyWeather.Core.Tests.csproj", "{9041C809-9E8B-4A27-8E92-88CC57257614}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{AE1A868C-431E-4F68-8D4D-E3498CCF3788}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE1A868C-431E-4F68-8D4D-E3498CCF3788}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE1A868C-431E-4F68-8D4D-E3498CCF3788}.Release|Any CPU.Build.0 = Release|Any CPU
+		{001EC089-858B-45EC-8559-BB753210EB1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{001EC089-858B-45EC-8559-BB753210EB1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{001EC089-858B-45EC-8559-BB753210EB1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{001EC089-858B-45EC-8559-BB753210EB1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9041C809-9E8B-4A27-8E92-88CC57257614}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9041C809-9E8B-4A27-8E92-88CC57257614}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9041C809-9E8B-4A27-8E92-88CC57257614}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9041C809-9E8B-4A27-8E92-88CC57257614}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
