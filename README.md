@@ -1,31 +1,32 @@
 # muddyWeather
 
 
-Project Secrt Values Setup
+## Project Secrt Values Setup
 
-from command line:
+### from command line:
 dotnet user-secrets set "muddyWeather:openWeatherApiKey" "<ApiKeyValue>" --project "<WepAppProjectPath>"
 dotnet user-secrets set "muddyWeather:openWeatherApiKey" "<ApiKeyValue>" --project "<MsTestProjectPath>"
 
 
-Nuget Packges used:
+## Nuget Packges used:
 
 the following were addd autmaticly by the project templates:
 
-Asp.Net Core Project Template Packages:
+### Asp.Net Core Project Template Packages:
 - Microsoft.VisualStudio.Azure.Containers.Tools.Targets
 
-MSTest Project Template Packages:
+### MSTest Project Template Packages:
 - Microsoft.NET.Test.Sdk
 - MSTest.TestAdapter
 - MSTest.TestFramework
 - coverlet.collector
 
-Extra Packages:
+### Extra Packages:
 - RestSharp: used to communicate with rest APIs
 - Microsoft.Extensions.Configuration.UserSecrets: used to set up local machine secreats such as api keys
+- Moq: used to mock dependincy interfaces when running unit tests
 
-Refrences used:
+## Refrences used:
 - Most Complete MSTest Unit Testing Framework Cheat Sheet:
 https://www.automatetheplanet.com/mstest-cheat-sheet/
 Refrenced when creating the ms test classes to fill them with the initial stub functions for testing
