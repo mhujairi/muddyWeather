@@ -5,7 +5,7 @@ using muddyWeather.Core.Data;
 using muddyWeather.Core.Model;
 
 using System;
-using System.IO;
+using System.Linq;
 
 namespace muddyWeather.Core.Tests
 {
@@ -27,9 +27,7 @@ namespace muddyWeather.Core.Tests
                     .AddUserSecrets(thisAssembly)
                     .Build();
 
-                openWeatherApiKey = "261f3a94d947281c26f2b6181db830a0";// appSettings["muddyWeather:openWeatherApiKey"];
-
-
+                openWeatherApiKey = appSettings["muddyWeather:openWeatherApiKey"];
             }
 
             [TestInitialize]
@@ -62,7 +60,7 @@ namespace muddyWeather.Core.Tests
             [ExpectedException(typeof(Exception), "Unauthorized")]
             public void UnAuthrized()
             {
-                // Your test code goes here.
+                //Assemble
                 var location = new GeoLocation();
                 subject = new OpenWeatherRepository(
                     appId: "Dummy",
@@ -70,6 +68,8 @@ namespace muddyWeather.Core.Tests
                         "http://pro.openweathermap.org/data/2.5/forecast"
                         )
                     );
+
+                //Action
                 var result = subject.GetWeatherForecastAsync(location).Await();
 
             }
@@ -77,10 +77,16 @@ namespace muddyWeather.Core.Tests
             [TestMethod]
             public void SuccessfullCall()
             {
-                // Your test code goes here.
+                //Assemble
                 var location = new GeoLocation();
+
+                //Action
                 var result = subject.GetWeatherForecastAsync(location).Await();
 
+                //Assert
+                Assert.IsNotNull(result);
+                Assert.IsNotNull(result.Daily);
+                Assert.IsTrue(result.Daily.Count() > 0);
             }
         }
     }

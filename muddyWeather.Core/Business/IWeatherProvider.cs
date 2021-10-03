@@ -1,10 +1,11 @@
-﻿
-using System;
+﻿using muddyWeather.Core.Model;
+
+using System.Threading.Tasks;
 
 namespace muddyWeather.Core.Business
 {
-    public class IWeatherProvider
+    public interface IWeatherProvider
     {
-
+        Task<bool> IsMuddyAsync(GeoLocation geoLocation);
     }
 }

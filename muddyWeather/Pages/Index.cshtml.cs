@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+
+using muddyWeather.Core.Business;
+using muddyWeather.Core.Model;
 
 using System;
 using System.Collections.Generic;
@@ -11,16 +15,31 @@ namespace muddyWeather.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly IWeatherProvider weatherProvider;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(IWeatherProvider weatherProvider, IConfiguration configuration)
         {
-            _logger = logger;
+            if (weatherProvider is null)
+            {
+                throw new ArgumentNullException(nameof(weatherProvider));
+            }
+
+            this.weatherProvider = weatherProvider;
+
+            GeoLocation = new GeoLocation
+            {
+                Latitude = long.Parse(configuration["muddyWeather:goeLocation:Latitude"]),
+                Longitude = long.Parse(configuration["muddyWeather:goeLocation:Longitude"])
+            };
         }
 
-        public void OnGet()
+        public async void OnGet()
         {
-
+            IsMuddy =await  weatherProvider.IsMuddyAsync(GeoLocation);
         }
+
+        public bool IsMuddy { get; private set; }
+
+        public GeoLocation GeoLocation { get; set; }
     }
 }

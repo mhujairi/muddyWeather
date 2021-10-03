@@ -38,6 +38,7 @@ namespace muddyWeather.Core.Data
             var request = new RestRequest("onecall", Method.GET)
                 .AddParameter("lat", location.Latitude)
                 .AddParameter("lon", location.Longitude)
+                .AddParameter("units", "metric")
                 .AddParameter("exclude", "current,minutely,hourly,alerts")
                 .AddParameter("appid", appId)
                 ;

@@ -1,7 +1,9 @@
-﻿namespace muddyWeather.Core.Model
+﻿using System.Collections.Generic;
+
+namespace muddyWeather.Core.Model
 {
     public class WeatherForecast
     {
-        public string cod { get; set; }
+        public IEnumerable<DayForcast> Daily { get; set; }
     }
 }
