@@ -39,7 +39,7 @@ namespace muddyWeather.Core.Tests
                 subject = new OpenWeatherRepository(
                     appId: openWeatherApiKey,
                     client: new RestSharp.RestClient(
-                        "http://api.openweathermap.org/data/2.5/forecast"
+                        "http://api.openweathermap.org/data/2.5"
                         )
                     );
             }
